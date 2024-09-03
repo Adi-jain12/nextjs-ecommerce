@@ -22,6 +22,7 @@ const config = {
 				primary: {
 					50: '#E1E8EF',
 					100: '#D4DEE7',
+					150: '#EFECE4',
 					200: '#B7C7D7',
 					300: '#99B0C7',
 					400: '#7C99B6',
@@ -33,7 +34,7 @@ const config = {
 					950: '#141C24',
 				},
 				accent: {
-					50: '#FAF5F0',
+					50: '#FAF9F2',
 					100: '#F4ECE1',
 					200: '#F5F5DC',
 					300: '#DDC2A2',

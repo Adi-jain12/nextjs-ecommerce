@@ -1,7 +1,6 @@
-import MainWrapper from '@/components/MainWrapper';
-import Mobile from '@/components/Mobile';
+import MainWrapper from '@/app/_components/MainWrapper';
+import Mobile from '@/app/_components/Mobile';
 import { Check, Star } from 'lucide-react';
-import Image from 'next/image';
 
 export default function Home() {
 	return (

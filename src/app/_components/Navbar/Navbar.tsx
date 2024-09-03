@@ -2,7 +2,12 @@ import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
 import MainWrapper from '../MainWrapper';
 import { buttonVariants } from '../ui/button';
-import Image from 'next/image';
+import { Squada_One } from 'next/font/google';
+
+const squadaOne = Squada_One({
+	weight: '400',
+	subsets: ['latin'],
+});
 
 const Navbar = async () => {
 	const user = undefined;
@@ -13,15 +18,11 @@ const Navbar = async () => {
 		<nav className="z-[100] inset-x-0 top-0 w-full border-b border-t border-slate-200 py-6 first-letter:backdrop-blur-lg transition-all">
 			<MainWrapper>
 				<div className="flex text-3xl h-10 items-center justify-between">
-					<Link href="/" className="flex z-40 font-semibold">
-						<Image
-							src="/logo.avif"
-							height="90"
-							width="90"
-							quality={100}
-							alt="Logo"
-							// className="hover:animate-spin-slow"
-						/>
+					<Link
+						href="/"
+						className={`${squadaOne.className} text-5xl flex z-40 font-semibold`}
+					>
+						KERNEL
 					</Link>
 
 					<div className="h-full flex items-center space-x-4">
