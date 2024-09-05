@@ -3,8 +3,9 @@ import Google from 'next-auth/providers/google';
 import Credentials from 'next-auth/providers/credentials';
 import { PrismaAdapter } from '@auth/prisma-adapter';
 import bcrypt from 'bcryptjs';
-import { db } from './db';
+
 import { saltAndHashPassword } from '../_utils/helper';
+import prisma from './db';
 
 export const {
 	auth,
@@ -12,7 +13,7 @@ export const {
 	signOut,
 	handlers: { GET, POST },
 } = NextAuth({
-	// adapter: PrismaAdapter(db),
+	// adapter: PrismaAdapter(prisma),
 	session: { strategy: 'jwt' },
 
 	providers: [
@@ -39,14 +40,14 @@ export const {
 				const email = credentials.email as string;
 				const hash = saltAndHashPassword(credentials.password);
 
-				let user: any = await db.user.findUnique({
+				let user: any = await prisma.user.findUnique({
 					where: {
 						email,
 					},
 				});
 
 				if (!user) {
-					user = await db.user.create({
+					user = await prisma.user.create({
 						data: {
 							email,
 							hashedPassword: hash,
@@ -68,39 +69,34 @@ export const {
 	],
 
 	callbacks: {
-		// authorized({ auth, request }) {
-		// 	return !!auth?.user;
-		// },
+		authorized({ auth, request }) {
+			return !!auth?.user;
+		},
 
 		async signIn({ user, account, profile }) {
-			// console.log(user);
-			console.log('sdgsegwegwe', user);
 			let email = user.email as string;
 
 			try {
-				const existingUser = await db.user.findUnique({
+				const existingUser = await prisma.user.findUnique({
 					where: {
 						email: email,
 					},
 				});
 
-				console.log('dsfsdfsdfsdfdsfffffffffffffffffffsdf', existingUser);
-
 				if (!existingUser)
-					await db.user.create({
+					await prisma.user.create({
 						data: {
 							email: email,
 						},
 					});
-				// If getGuest() returns a guest from database i.e existing guest in database, then this func signIn will return true
+
 				return true;
 			} catch {
-				// If getGuest() returns null i.e no existing guest in database, then this func signIn will return false
 				return false;
 			}
 		},
 		// async session({ session, user }) {
-		// 	await db.user.findUnique({
+		// 	await prisma.user.findUnique({
 		// 		where: {
 		// 			email: String(session.user.email),
 		// 		},
@@ -110,6 +106,6 @@ export const {
 		// },
 	},
 	pages: {
-		signIn: '/login',
+		signIn: '/sign-in',
 	},
 });

@@ -2,16 +2,18 @@
 
 import { revalidatePath } from 'next/cache';
 import { signIn, signOut } from './auth';
-import { db } from './db';
+
 import { AuthError } from 'next-auth';
+import prisma from './db';
 
 const getUserByEmail = async (email: string) => {
 	try {
-		const user = await db.user.findUnique({
+		const user = await prisma.user.findUnique({
 			where: {
 				email,
 			},
 		});
+
 		return user;
 	} catch (error) {
 		console.log(error);
@@ -28,7 +30,6 @@ export const loginWithCredentials = async (formData: FormData) => {
 	};
 
 	const existingUser = await getUserByEmail(formData.get('email') as string);
-	console.log(existingUser);
 
 	try {
 		await signIn('credentials', rawFormData);
