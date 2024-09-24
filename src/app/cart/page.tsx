@@ -2,6 +2,10 @@ import MainWrapper from '@/app/_components/MainWrapper';
 import Mobile from '@/app/_components/Mobile';
 import { Check, Star } from 'lucide-react';
 
+export const metadata = {
+	title: 'Cart Details',
+};
+
 export default function page() {
 	return (
 		<div className="">

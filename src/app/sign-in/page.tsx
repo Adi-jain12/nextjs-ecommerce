@@ -2,6 +2,10 @@ import React from 'react';
 import SignInGoogle from '../_components/Auth/SigninGoogle';
 import LoginForm from '../_components/Auth/LoginForm';
 
+export const metadata = {
+	title: 'Welcome To Kernel',
+};
+
 const page = () => {
 	return (
 		<div className="w-full flex mt-20 justify-center">

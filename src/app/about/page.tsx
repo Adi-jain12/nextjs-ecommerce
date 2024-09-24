@@ -1,5 +1,9 @@
 import React from 'react';
 
+export const metadata = {
+	title: 'About',
+};
+
 const page = () => {
 	return (
 		<div className="grid grid-cols-5 gap-x-24 gap-y-32 text-lg items-center">

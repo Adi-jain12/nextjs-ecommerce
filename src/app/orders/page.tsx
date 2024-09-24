@@ -1,5 +1,10 @@
 import React from 'react';
 
+
+export const metadata = {
+	title: 'Orders',
+};
+
 type Props = {};
 
 const page = (props: Props) => {
