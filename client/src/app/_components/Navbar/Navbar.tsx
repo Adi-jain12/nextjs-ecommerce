@@ -6,7 +6,7 @@ import { Squada_One } from 'next/font/google';
 import { auth } from '@/app/_lib/auth';
 import SignOutButton from '../Auth/Signout';
 import Image from 'next/image';
-import userImage from '../../../../public/user.png';
+// import userImage from '../../../../public/user.png';
 
 const squadaOne = Squada_One({
 	weight: '400',
@@ -36,11 +36,20 @@ const Navbar = async () => {
 									{session?.user?.name}
 									{!session ? (
 										<div className="relative w-8 h-8">
-											<Image
+											{/* <Image
 												src={userImage}
 												// fill
 												className="rounded-full h-full object-cover"
 												alt="Profile photo"
+											/> */}
+
+											<img
+												src={session?.user?.image}
+												className="h-8 rounded-full"
+												// className="rounded-full h-full object-cover"
+												fill
+												alt="Profile photo"
+												referrerPolicy="no-referrer"
 											/>
 										</div>
 									) : (

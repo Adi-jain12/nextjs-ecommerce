@@ -5,7 +5,7 @@ import { FaSquareInstagram } from 'react-icons/fa6';
 import { Squada_One } from 'next/font/google';
 import { Rubik_Mono_One } from 'next/font/google';
 import Image from 'next/image';
-import appDownload from '../../../../public/appDownload.png';
+// import appDownload from '../../../../public/appDownload.png';
 
 const rubikMonoOne = Rubik_Mono_One({
 	weight: '400',
@@ -27,13 +27,13 @@ const Footer = (props: Props) => {
 					<FaSquareInstagram size={20} />
 					<FaXTwitter size={20} />
 				</div>
-				<Image
+				{/* <Image
 					src={appDownload}
 					height={280}
 					width={280}
 					alt="download"
 					className="bg-red-700"
-				/>
+				/> */}
 			</div>
 			<footer className="px-10 sm:px-20 py-10 flex flex-col md:flex-row gap-x-2">
 				<div className="pr-12 grow">
