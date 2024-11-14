@@ -1,7 +1,7 @@
 import NextAuth from 'next-auth';
 import Google from 'next-auth/providers/google';
 import Credentials from 'next-auth/providers/credentials';
-import { PrismaAdapter } from '@auth/prisma-adapter';
+
 import bcrypt from 'bcryptjs';
 
 import { saltAndHashPassword } from '../_utils/helper';
@@ -13,7 +13,6 @@ export const {
 	signOut,
 	handlers: { GET, POST },
 } = NextAuth({
-	// adapter: PrismaAdapter(prisma),
 	session: { strategy: 'jwt' },
 
 	providers: [
