@@ -48,13 +48,15 @@ const DashboardLayout = ({ children }: Props) => {
 						</Button>
 					</DropdownMenuTrigger>
 
-					<DropdownMenuContent>
+					<DropdownMenuContent align="end">
 						<DropdownMenuLabel>My Account</DropdownMenuLabel>
 						<DropdownMenuSeparator />
 						<DropdownMenuItem>Logout</DropdownMenuItem>
 					</DropdownMenuContent>
 				</DropdownMenu>
 			</header>
+
+			<main className="my-5">{children}</main>
 		</div>
 	);
 };

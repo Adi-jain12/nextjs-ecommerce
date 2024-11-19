@@ -4,17 +4,16 @@ import { revalidatePath } from 'next/cache';
 import { signIn, signOut } from './auth';
 
 import { AuthError } from 'next-auth';
-import prisma from './db';
+// import prisma from './db';
 
 const getUserByEmail = async (email: string) => {
 	try {
-		const user = await prisma.user.findUnique({
-			where: {
-				email,
-			},
-		});
-
-		return user;
+		// const user = await prisma.user.findUnique({
+		// 	where: {
+		// 		email,
+		// 	},
+		// });
+		// return user;
 	} catch (error) {
 		console.log(error);
 		return null;

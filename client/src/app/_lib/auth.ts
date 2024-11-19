@@ -5,7 +5,7 @@ import Credentials from 'next-auth/providers/credentials';
 import bcrypt from 'bcryptjs';
 
 import { saltAndHashPassword } from '../_utils/helper';
-import prisma from './db';
+// import prisma from './db';
 
 export const {
 	auth,
@@ -39,30 +39,30 @@ export const {
 				const email = credentials.email as string;
 				const hash = saltAndHashPassword(credentials.password);
 
-				let user: any = await prisma.user.findUnique({
-					where: {
-						email,
-					},
-				});
+				// let user: any = await prisma.user.findUnique({
+				// 	where: {
+				// 		email,
+				// 	},
+				// });
 
-				if (!user) {
-					user = await prisma.user.create({
-						data: {
-							email,
-							hashedPassword: hash,
-						},
-					});
-				} else {
-					const isMatch = bcrypt.compareSync(
-						credentials.password as string,
-						user.hashedPassword
-					);
-					if (!isMatch) {
-						throw new Error('Incorrect password.');
-					}
-				}
+				// if (!user) {
+				// 	user = await prisma.user.create({
+				// 		data: {
+				// 			email,
+				// 			hashedPassword: hash,
+				// 		},
+				// 	});
+				// } else {
+				// 	const isMatch = bcrypt.compareSync(
+				// 		credentials.password as string,
+				// 		user.hashedPassword
+				// 	);
+				// 	if (!isMatch) {
+				// 		throw new Error('Incorrect password.');
+				// 	}
+				// }
 
-				return user;
+				// return user;
 			},
 		}),
 	],
@@ -75,24 +75,24 @@ export const {
 		async signIn({ user, account, profile }) {
 			let email = user.email as string;
 
-			try {
-				const existingUser = await prisma.user.findUnique({
-					where: {
-						email: email,
-					},
-				});
+			// try {
+			// 	const existingUser = await prisma.user.findUnique({
+			// 		where: {
+			// 			email: email,
+			// 		},
+			// 	});
 
-				if (!existingUser)
-					await prisma.user.create({
-						data: {
-							email: email,
-						},
-					});
+			// 	if (!existingUser)
+			// 		await prisma.user.create({
+			// 			data: {
+			// 				email: email,
+			// 			},
+			// 		});
 
-				return true;
-			} catch {
-				return false;
-			}
+			// 	return true;
+			// } catch {
+			// 	return false;
+			// }
 		},
 		// async session({ session, user }) {
 		// 	await prisma.user.findUnique({
